@@ -7,10 +7,10 @@
     <title>CSG Pro Hackathon Example</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,16 +20,61 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Hello, world!</h1>
 
+  <div class="navbar navbar-inverse navbar-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">CSG Pro Hackathon Example</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
 
+  <div class="container">
 
+    <form role="form">
 
+      <div class="form-group">
+        <label>User Name</label>
+        <input data-bind="value: userName" type="text" class="form-control"/>
+      </div>
 
+      <div class="form-group">
+        <label>Password</label>
+        <input data-bind="value: password" type="password" class="form-control"/>
+      </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <div class="form-group">
+        <label>Name</label>
+        <input data-bind="value: name" type="text" class="form-control"/>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input data-bind="value: email" type="text" class="form-control"/>
+      </div>
+
+      <button data-bind="click: register" class="btn btn-success">Register</button>
+
+    </form>
+
+  </div><!-- /.container -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/knockout-3.1.0.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
