@@ -19,16 +19,36 @@ function ViewModel () {
 
         console.log(user);
 
-        $.ajax("https://csgprohackathonapi.azurewebsites.net/api/users", {
+        var url = "https://csgprohackathonapi.azurewebsites.net/api/users";
+        var jsonDataString = JSON.stringify(user);
+
+        $.ajax({
             type: "POST",
+            data: jsonDataString,
+            url: url,
             contentType: "application/json",
-            data: user,
-            success: function(data, success) {
+            success: function(data, success, xhr) {
                 console.log(data);
             },
             error: function (xhr, status, errorThrown) {
                 console.log(status);
                 console.log(errorThrown);
+            },
+            statusCode: {
+                200: function (data, success, xhr) {
+                    console.log(data);
+                },
+                201: function (data, success, xhr) {
+                    console.log(data);
+                },
+                400: function(xhr, status, errorThrown) {
+                    console.log(status);
+                    console.log(errorThrown);
+                },
+                500: function(xhr, status, errorThrown) {
+                    console.log(status);
+                    console.log(errorThrown);
+                }
             }
         });
     };
