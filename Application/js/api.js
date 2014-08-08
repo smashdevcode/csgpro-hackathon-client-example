@@ -1,32 +1,24 @@
 
-function ViewModel () {
-    var self = this;
+function API ($) {
+    var self = this,
+        url = 'https://csgprohackathonapi.azurewebsites.net/api/';
 
-    self.password = new ko.observable();
-    self.userName = new ko.observable();
-    self.name = new ko.observable();
-    self.email = new ko.observable();
 
-    self.register = function () {
 
-        var user = {
-            Password: self.password(),
-            UserName: self.userName(),
-            Name: self.name(),
-            Email: self.email(),
-            TimeZoneId: 'Pacific Standard Time'
-        };
 
-        console.log(user);
 
-        //var url = 'http://localhost:57214/api/users';
-        var url = 'https://csgprohackathonapi.azurewebsites.net/api/users';
-        var jsonDataString = JSON.stringify(user);
 
+
+
+
+
+
+
+    self.post = function (controller, json) {
         $.ajax({
             type: 'POST',
             data: jsonDataString,
-            url: url,
+            url: url + controller,
             contentType: 'application/json',
             success: function (data, success, xhr) {
                 console.log(data);
@@ -54,7 +46,3 @@ function ViewModel () {
         });
     };
 }
-
-var viewModel = new ViewModel();
-
-ko.applyBindings(viewModel);
