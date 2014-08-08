@@ -2,13 +2,52 @@
  * Created by James on 8/8/2014.
  */
 
-angular.module('app', ['ngRoute'])
+angular.module('api', [])
 
-    //.value('fbURL', 'https://angularjs-projects.firebaseio.com/')
+    .controller('Repository', function($scope, $http) {
 
-    //.factory('Projects', function($firebase, fbURL) {
-    //  return $firebase(new Firebase(fbURL)).$asArray();
-    //})
+        $scope.getUser = function () {
+            console.log('hello from Repository.getUser()!');
+        };
+
+    });
+
+angular.module('app', ['ngRoute','api'])
+
+    .value('apiURL', 'https://csgprohackathonapi.azurewebsites.net/api/')
+
+    .factory('API', function($http, apiURL) {
+        return new function () {
+            var self = this;
+
+            self.getUser = function (username, password, success) {
+
+                var authString = btoa(username + ':' + password);
+
+                $http({
+                    headers: {
+                        'Authorization': 'Basic ' + authString
+                    },
+                    method: 'GET',
+                    url: apiURL + 'users'
+                    }).
+                    success(function(data, status, headers, config) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+                        console.log('success');
+                        if (success) {
+                            success(data);
+                        }
+                    }).
+                    error(function(data, status, headers, config) {
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                        console.log(status);
+                    });
+
+            };
+        };
+    })
 
     .config(function($routeProvider) {
         $routeProvider
@@ -41,7 +80,14 @@ angular.module('app', ['ngRoute'])
             });
     })
 
-    .controller('Home', function($scope) {
+    .controller('Home', function($scope, API) {
+        var user = API.getUser('jennyc', 'password', function (user) {
+            console.log(user);
+
+            if (user) {
+                $scope.name = user.Name;
+            }
+        });
     })
 
     .controller('Projects', function($scope) {
