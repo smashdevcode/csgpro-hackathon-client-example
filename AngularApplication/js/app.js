@@ -1,7 +1,7 @@
 
 angular.module('api', [])
 
-    .controller('Repository', function($scope, $http) {
+    .controller('Repository', function ($scope, $http) {
 
         $scope.getUser = function () {
             console.log('hello from Repository.getUser()!');
@@ -9,10 +9,10 @@ angular.module('api', [])
 
     });
 
-angular.module('app', ['ngRoute','api'])
+angular.module('app', ['ngRoute', 'api'])
 
-    .value('apiURL', 'http://localhost:57214/api/')
-    //.value('apiURL', 'https://csgprohackathonapi.azurewebsites.net/api/')
+    //.value('apiURL', 'http://localhost:57214/api/')
+    .value('apiURL', 'https://csgprohackathonapi.azurewebsites.net/api/')
 
     .factory('auth', function () {
         return new function () {
@@ -39,7 +39,7 @@ angular.module('app', ['ngRoute','api'])
         };
     })
 
-    .factory('API', function($http, apiURL, auth) {
+    .factory('API', function ($http, apiURL, auth) {
         return new function () {
             var self = this;
 
@@ -70,13 +70,13 @@ angular.module('app', ['ngRoute','api'])
                 var authString = btoa(auth.username + ':' + auth.password);
 
                 $http({
-                        headers: {
-                            'Authorization': 'Basic ' + authString
-                        },
-                        method: method,
-                        url: apiURL + action,
-                        data: data
-                    }).
+                    headers: {
+                        'Authorization': 'Basic ' + authString
+                    },
+                    method: method,
+                    url: apiURL + action,
+                    data: data
+                }).
                     success(function (data, status, headers, config) {
                         // this callback will be called asynchronously
                         // when the response is available
@@ -99,19 +99,37 @@ angular.module('app', ['ngRoute','api'])
         };
     })
 
-    .config(function($routeProvider) {
+    .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
-                controller:'Home',
-                templateUrl:'views/home.html'
+                controller: 'Home',
+                templateUrl: 'views/home.html'
             })
             .when('/home', {
-                controller:'Home',
-                templateUrl:'views/home.html'
+                controller: 'Home',
+                templateUrl: 'views/home.html'
             })
             .when('/projects', {
-                controller:'Projects',
-                templateUrl:'views/projects.html'
+                controller: 'Projects',
+                templateUrl: 'views/projects.html',
+                //resolve: {
+                //    temp1: function ($q, $timeout) {
+                //        var defer = $q.defer();
+
+                //        $timeout(function () {
+                //            defer.resolve();
+                //        }, 2000);
+
+                //        return defer.promise;
+                //    },
+                //    temp2: function ($q) {
+                //        var defer = $q.defer();
+
+                //        defer.reject();
+
+                //        return defer.promise;
+                //    }
+                //}
             })
             .when('/projects/add', {
                 controller: 'ProjectAdd',
@@ -122,8 +140,8 @@ angular.module('app', ['ngRoute','api'])
                 templateUrl: 'views/project-edit.html'
             })
             .when('/register', {
-                controller:'Register',
-                templateUrl:'views/register.html'
+                controller: 'Register',
+                templateUrl: 'views/register.html'
             })
             // .when('/edit/:projectId', {
             //   controller:'EditCtrl',
@@ -134,7 +152,7 @@ angular.module('app', ['ngRoute','api'])
             //   templateUrl:'detail.html'
             // })
             .otherwise({
-                redirectTo:'/'
+                redirectTo: '/'
             });
     })
 
@@ -186,6 +204,16 @@ angular.module('app', ['ngRoute','api'])
         $scope.project = {};
 
         $scope.save = function () {
+            var project = $scope.project;
+
+            // Add "Default" role and task.
+            project.projectRoles = [
+                { name: 'Default' }
+            ];
+            project.projectTasks = [
+                { name: 'Default' }
+            ];
+
             // JCTODO need to handle errors
 
             API.addProject($scope.project, function () {
@@ -216,7 +244,7 @@ angular.module('app', ['ngRoute','api'])
         };
     })
 
-    .controller('Register', function($scope) {
+    .controller('Register', function ($scope) {
     })
 
 //    .controller('CreateCtrl', function($scope, $location) {
