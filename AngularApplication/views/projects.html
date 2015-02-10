@@ -2,7 +2,7 @@
 <h2>Projects</h2>
 
 <p>
-    <button class="btn btn-success btn-lg" ng-click="add()">
+    <button class="btn btn-success btn-lg" ng-click="vm.add()">
         <span class="glyphicon glyphicon-plus"></span> Add Project
     </button>
 </p>
@@ -14,12 +14,12 @@
             <th>&nbsp;</th>
         </tr>
     </thead>
-    <tbody ng-repeat="project in projects">
+    <tbody ng-repeat="project in vm.projects">
         <tr>
             <td>{{ project.Name }}</td>
             <td>
                 <button class="btn btn-default"
-                        ng-click="edit(project.ProjectId)">
+                        ng-click="vm.edit(project.ProjectId)">
                     <span class="glyphicon glyphicon-pencil"></span> Edit
                 </button>
             </td>
