@@ -51,6 +51,11 @@
                 controllerAs: 'vm',
                 templateUrl: 'views/project-edit.html'
             })
+            .when('/login', {
+                controller: 'Login',
+                controllerAs: 'vm',
+                templateUrl: 'views/login.html'
+            })
             .when('/register', {
                 controller: 'Register',
                 controllerAs: 'vm',
