@@ -6,11 +6,10 @@
         .module('app')
         .factory('auth', auth);
 
-    function auth() {
+    auth.$inject = ['$q', 'api', 'session'];
+
+    function auth($q, api, session) {
         var service = {
-            isAuthenticated: false,
-            username: null,
-            password: null,
             login: login,
             logout: logout
         };
@@ -18,16 +17,28 @@
         return service;
 
         function login(username, password) {
-            // TODO need to authenticate the user
-            service.isAuthenticated = true;
-            service.username = username;
-            service.password = password;
+            session.username = username;
+            session.password = password;
+
+            // Attempt to get the user from the API.
+            return api.getUser()
+                .then(function () {
+                    session.isAuthenticated = true;
+                    return 'Login successful.';
+                }, function () {
+                    resetSession();
+                    return $q.reject(Error('Login failed.'));
+                });
         }
 
         function logout() {
-            service.isAuthenticated = false;
-            service.username = null;
-            service.password = null;
+            resetSession();
+        }
+
+        function resetSession() {
+            session.isAuthenticated = false;
+            session.username = null;
+            session.password = null;
         }
     }
 })();

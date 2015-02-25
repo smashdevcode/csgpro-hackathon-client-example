@@ -8,7 +8,7 @@
 
     ProjectAdd.$inject = ['$location', 'api', 'auth'];
 
-    function ProjectAdd($location, api, auth) {
+    function ProjectAdd($location, api) {
         var vm = this;
 
         vm.project = {};
@@ -17,10 +17,6 @@
         activate();
 
         function activate() {
-            // TODO need to provide a way for the user to login
-            if (!auth.isAuthenticated) {
-                auth.login('jennyc', 'password');
-            }
         }
 
         function save() {
@@ -34,7 +30,7 @@
 
             // TODO need to handle errors
 
-            api.addProject(vm.project, function () {
+            api.addProject(vm.project).then(function () {
                 $location.path('/projects');
             });
         }

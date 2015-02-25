@@ -8,7 +8,7 @@
 
     ProjectEdit.$inject = ['$location', '$routeParams', 'api', 'auth'];
 
-    function ProjectEdit($location, $routeParams, api, auth) {
+    function ProjectEdit($location, $routeParams, api) {
         var vm = this;
 
         vm.project = {};
@@ -17,12 +17,7 @@
         activate();
 
         function activate() {
-            // TODO need to provide a way for the user to login
-            if (!auth.isAuthenticated) {
-                auth.login('jennyc', 'password');
-            }
-
-            api.getProject($routeParams.projectId, function (project) {
+            api.getProject($routeParams.projectId).then(function (project) {
                 vm.project = project;
             });
         }
@@ -31,7 +26,7 @@
 
             // TODO need to handle errors
 
-            api.updateProject(vm.project, function () {
+            api.updateProject(vm.project).then(function () {
                 $location.path('/projects');
             });
         }

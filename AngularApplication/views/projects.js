@@ -8,7 +8,7 @@
 
     Projects.$inject = ['$location', 'api', 'auth'];
 
-    function Projects($location, api, auth) {
+    function Projects($location, api) {
         var vm = this;
 
         vm.projects = [];
@@ -18,12 +18,7 @@
         activate();
 
         function activate() {
-            // TODO need to provide a way for the user to login
-            if (!auth.isAuthenticated) {
-                auth.login('jennyc', 'password');
-            }
-
-            api.getProjects(function (projects) {
+            api.getProjects().then(function (projects) {
                 vm.projects = projects;
             });
         }

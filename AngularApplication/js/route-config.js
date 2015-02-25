@@ -22,6 +22,7 @@
                 controller: 'Projects',
                 controllerAs: 'vm',
                 templateUrl: 'views/projects.html'
+                // TODO remove
                 //resolve: {
                 //    temp1: function ($q, $timeout) {
                 //        var defer = $q.defer();
@@ -54,12 +55,14 @@
             .when('/login', {
                 controller: 'Login',
                 controllerAs: 'vm',
-                templateUrl: 'views/login.html'
+                templateUrl: 'views/login.html',
+                requireLogin: false
             })
             .when('/register', {
                 controller: 'Register',
                 controllerAs: 'vm',
-                templateUrl: 'views/register.html'
+                templateUrl: 'views/register.html',
+                requireLogin: false
             })
             .otherwise({
                 redirectTo: '/'

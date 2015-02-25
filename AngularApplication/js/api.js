@@ -6,9 +6,9 @@
         .module('app')
         .factory('api', api);
 
-    api.$inject = ['$http', 'apiUrl', 'auth'];
+    api.$inject = ['$q', '$http', 'apiUrl', 'session'];
 
-    function api($http, apiUrl, auth) {
+    function api($q, $http, apiUrl, session) {
         return {
             getUser: getUser,
             getProjects: getProjects,
@@ -17,56 +17,43 @@
             updateProject: updateProject
         };
 
-        // TODO need to check within each function if the user is logged
-
-        function getUser(success) {
-            http('GET', 'users', null, success);
+        function getUser() {
+            return http('GET', 'users', null);
         }
 
-        function getProjects(success) {
-            http('GET', 'projects', null, success);
+        function getProjects() {
+            return http('GET', 'projects', null);
         }
 
-        function getProject(projectId, success) {
-            http('GET', 'projects/' + projectId, null, success);
+        function getProject(projectId) {
+            return http('GET', 'projects/' + projectId, null);
         }
 
-        function addProject(project, success) {
-            http('POST', 'projects', project, success);
+        function addProject(project) {
+            return http('POST', 'projects', project);
         }
 
-        function updateProject(project, success) {
-            http('PUT', 'projects/' + project.ProjectId, project, success);
+        function updateProject(project) {
+            return http('PUT', 'projects/' + project.ProjectId, project);
         }
 
-        // TODO switch to using promise for success action
-        function http(method, action, data, success) {
-            var authString = btoa(auth.username + ':' + auth.password);
+        function http(method, action, data) {
+            var authString = btoa(session.username + ':' + session.password);
 
-            $http({
-                headers: {
-                    'Authorization': 'Basic ' + authString
-                },
-                method: method,
-                url: apiUrl + action,
-                data: data
-            })
-            .success(function (data, status, headers, config) {
-                // this callback will be called asynchronously
-                // when the response is available
-                console.log('success');
-
-                if (success) {
-                    success(data);
-                }
-            })
-            .error(function (data, status, headers, config) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                console.log(status);
-
-                // TODO display error message???
-            });
+            return $http({
+                    headers: {
+                        'Authorization': 'Basic ' + authString
+                    },
+                    method: method,
+                    url: apiUrl + action,
+                    data: data
+                })
+                .then(function (response) {
+                        return response.data;
+                    }, function (response) {
+                        console.error('API Error: ' + response.data);
+                        return $q.reject(Error(response.data));
+                    });
         }
     }
 })();

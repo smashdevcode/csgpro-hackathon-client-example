@@ -16,17 +16,12 @@
         activate();
 
         function activate() {
-            // TODO need to provide a way for the user to login
-            if (!auth.isAuthenticated) {
-                auth.login('jennyc', 'password');
-            }
 
-            api.getUser(function (user) {
+            // TODO just get the user information from the auth service
+
+            api.getUser().then(function (user) {
                 console.log(user);
-
-                if (user) {
-                    vm.name = user.Name;
-                }
+                vm.name = user.Name;
             });
         }
     }
