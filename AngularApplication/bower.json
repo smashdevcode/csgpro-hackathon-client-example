@@ -1,0 +1,17 @@
+{
+  "name": "AngularApplication",
+  "version": "0.0.0",
+  "homepage": "https://github.com/smashdevcode/CSGProHackathonClientExample",
+  "authors": [
+    "James Churchill <james@smashdev.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
