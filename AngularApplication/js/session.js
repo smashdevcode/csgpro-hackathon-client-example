@@ -9,6 +9,7 @@
     function session() {
         return {
             isAuthenticated: false,
+            name: null,
             username: null,
             password: null
         };

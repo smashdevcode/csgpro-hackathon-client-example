@@ -13,6 +13,7 @@
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/constants.js"></script>
+    <script src="js/nav.js"></script>
     <script src="js/route-config.js"></script>
     <script src="js/session.js"></script>
     <script src="views/home.js"></script>
@@ -22,21 +23,46 @@
     <script src="views/projects.js"></script>
     <script src="views/register.js"></script>
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
 
+    <nav class="navbar navbar-default" ng-controller="Nav as vm">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Time Tracking</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar" ng-if="vm.isAuthenticated">
+                <ul class="nav navbar-nav">
+                    <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+                    <li><a href="#/home">Home</a></li>
+                    <li><a href="#/projects">Projects</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" ng-click="vm.editProfile()">{{ vm.name }}</a></li>
+                    <li><a href="#" ng-click="vm.logout()">Logout</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+            <div class="collapse navbar-collapse" id="navbar" ng-if="!vm.isAuthenticated">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/register">Register</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
     <div class="container-fluid">
-
-        <h2>Time Tracking</h2>
-
-        <ul>
-            <li><a href="#/home">Home</a></li>
-            <li><a href="#/projects">Projects</a></li>
-            <li><a href="#/register">Register</a></li>
-        </ul>
 
         <div class="row">
             <div class="col-md-12">
