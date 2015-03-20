@@ -6,15 +6,10 @@
         .module('app')
         .factory('auth', auth);
 
-    auth.$inject = ['$rootScope', '$q', 'api', 'session'];
+    auth.$inject = ['$q', 'api', 'session'];
 
-    function auth($rootScope, $q, api, session) {
-        var userAuthenticatedEventName = 'auth.userAuthenticated';
-        var userUnauthenticatedEventName = 'auth.userUnauthenticated';
-
+    function auth($q, api, session) {
         var service = {
-            userAuthenticatedEventName: userAuthenticatedEventName,
-            userUnauthenticatedEventName: userUnauthenticatedEventName,
             login: login,
             logout: logout
         };
@@ -30,7 +25,6 @@
                 .then(function (data) {
                     session.isAuthenticated = true;
                     session.name = data.Name;
-                    $rootScope.$broadcast(userAuthenticatedEventName);
                     return 'Login successful.';
                 }, function () {
                     resetSession();
@@ -47,7 +41,6 @@
             session.name = null;
             session.username = null;
             session.password = null;
-            $rootScope.$broadcast(userUnauthenticatedEventName);
         }
     }
 })();

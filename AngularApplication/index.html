@@ -30,10 +30,12 @@
 <body>
 
     <nav class="navbar navbar-default" ng-controller="Nav as vm">
+
         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
+
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -42,24 +44,26 @@
                 <a class="navbar-brand" href="#">Time Tracking</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="navbar" ng-if="vm.isAuthenticated">
+            <div class="collapse navbar-collapse" id="navbar" ng-if="vm.isUserAuthenticated()">
                 <ul class="nav navbar-nav">
                     <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
                     <li><a href="#/home">Home</a></li>
                     <li><a href="#/projects">Projects</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" ng-click="vm.editProfile()">{{ vm.name }}</a></li>
+                    <li><a href="#" ng-click="vm.editProfile()">{{ vm.getUserName() }}</a></li>
                     <li><a href="#" ng-click="vm.logout()">Logout</a></li>
                 </ul>
-            </div><!-- /.navbar-collapse -->
-            <div class="collapse navbar-collapse" id="navbar" ng-if="!vm.isAuthenticated">
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbar" ng-if="!vm.isUserAuthenticated()">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#/register">Register</a></li>
                 </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
+            </div>
+
+        </div>
+
     </nav>
 
     <div class="container-fluid">
