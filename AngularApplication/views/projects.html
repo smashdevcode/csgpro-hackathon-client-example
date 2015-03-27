@@ -1,28 +1,21 @@
 
 <h2>Projects</h2>
 
-<p>
-    <button class="btn btn-success btn-lg" ng-click="vm.add()">
-        <span class="glyphicon glyphicon-plus"></span> Add Project
-    </button>
-</p>
+<md-button class="md-raised md-primary" ng-click="vm.add()">
+    Add Project
+</md-button>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>&nbsp;</th>
-        </tr>
-    </thead>
-    <tbody ng-repeat="project in vm.projects">
-        <tr>
-            <td>{{ project.Name }}</td>
-            <td>
-                <button class="btn btn-default"
-                        ng-click="vm.edit(project.ProjectId)">
-                    <span class="glyphicon glyphicon-pencil"></span> Edit
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div layout="row" layout-align="start start" layout-wrap>
+    <md-card ng-repeat="project in vm.projects" flex="30" style="height: 200px">
+        <md-card-content layout="column" flex>
+            <div layout="row" flex>
+                <h3>{{ project.Name }}</h3>
+            </div>
+            <div layout="row" layout-align="end end">
+                <md-button class="md-raised" ng-click="vm.edit(project.ProjectId)">
+                    Edit
+                </md-button>
+            </div>
+        </md-card-content>
+    </md-card>
+</div>

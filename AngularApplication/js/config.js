@@ -6,7 +6,7 @@
         .module('app')
         .config(config);
 
-    function config($routeProvider) {
+    function config($routeProvider, $mdThemingProvider) {
         $routeProvider
             .when('/', {
                 controller: 'Home',
@@ -45,12 +45,12 @@
             .when('/projects/add', {
                 controller: 'ProjectAdd',
                 controllerAs: 'vm',
-                templateUrl: 'views/project-add.html'
+                templateUrl: 'views/project-add-edit.html'
             })
             .when('/projects/:projectId', {
                 controller: 'ProjectEdit',
                 controllerAs: 'vm',
-                templateUrl: 'views/project-edit.html'
+                templateUrl: 'views/project-add-edit.html'
             })
             .when('/login', {
                 controller: 'Login',
@@ -67,5 +67,11 @@
             .otherwise({
                 redirectTo: '/'
             });
+
+        //$mdThemingProvider.theme('default')
+        //    .primaryPalette('blue-grey')
+        //    .accentPalette('yellow')
+        //    .warnPalette('red')
+        //    .backgroundPalette('grey');
     }
 })();

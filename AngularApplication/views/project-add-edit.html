@@ -1,0 +1,60 @@
+﻿
+<h2>{{ vm.pageTitle }}</h2>
+
+<form name="form" role="form">
+
+    <md-button class="md-raised md-primary"
+               ng-click="vm.save()" ng-disabled="form.$invalid">
+        Save
+    </md-button>
+
+    <md-button class="md-raised md-accent"
+               ng-click="vm.cancel()">
+        Cancel
+    </md-button>
+
+    <md-tabs>
+        <md-tab label="Main">
+
+            <h3>Main</h3>
+
+            <md-input-container>
+                <label>Name</label>
+                <input type="text" ng-model="vm.project.Name" required autofocus />
+            </md-input-container>
+
+            <md-input-container>
+                <label>External System Key</label>
+                <input type="text" ng-model="vm.project.ExternalSystemKey" />
+            </md-input-container>
+
+            <md-checkbox ng-model="vm.project.Archived" aria-label="Archived">
+                Archived
+            </md-checkbox>
+
+            <pre>
+{{ vm.project | json }}
+            </pre>
+
+        </md-tab>
+        <md-tab label="Roles">
+
+            <h3>Roles</h3>
+
+            <ul ng-repeat="role in vm.project.ProjectRoles">
+                <li>{{ role.Name }} <pre>{{ role | json }}</pre></li>
+            </ul>
+
+        </md-tab>
+        <md-tab label="Tasks">
+
+            <h3>Tasks</h3>
+
+            <ul ng-repeat="task in vm.project.ProjectTasks">
+                <li>{{ task.Name }} <pre>{{ task | json }}</pre></li>
+            </ul>
+
+        </md-tab>
+    </md-tabs>
+
+</form>

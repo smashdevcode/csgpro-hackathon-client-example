@@ -41,6 +41,9 @@
 
         function logout() {
             auth.logout();
+
+            // Send the user to the default view in order to refresh the content area.
+            $location.path('/');
         }
     }
 })();

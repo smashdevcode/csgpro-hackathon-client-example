@@ -3,26 +3,19 @@
 
 <form name="form" role="form">
 
-    <div class="row">
-        <div class="col-md-4">
+    <md-input-container>
+        <label>User Name</label>
+        <input type="text" ng-model="vm.userName" required autofocus />
+    </md-input-container>
 
-            <div class="form-group">
-                <label for="userName">User Name</label>
-                <input id="userName" type="text" class="form-control" ng-model="vm.userName" required />
-            </div>
+    <md-input-container>
+        <label>Password</label>
+        <input type="password" ng-model="vm.password" required />
+    </md-input-container>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input id="password" type="password" class="form-control" ng-model="vm.password" required />
-            </div>
-
-            <button type="submit" class="btn btn-info btn-lg" ng-click="vm.login()"
-                    ng-disabled="form.$invalid">
-                <span class="glyphicon glyphicon-user"></span>
-                Login
-            </button>
-
-        </div>
-    </div>
+    <md-button class="md-raised md-primary"
+               ng-click="vm.login()" ng-disabled="form.$invalid">
+        Login
+    </md-button>
 
 </form>

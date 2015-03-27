@@ -6,9 +6,9 @@
         .module('app')
         .controller('Login', Login);
 
-    Login.$inject = ['$location', 'auth'];
+    Login.$inject = ['$location', 'auth', 'dialog'];
 
-    function Login($location, auth) {
+    function Login($location, auth, dialog) {
         var vm = this;
 
         vm.userName = '';
@@ -26,9 +26,10 @@
             auth.login(vm.userName, vm.password)
                 .then(function () {
                        $location.path('/home');
-                    }, function (response) {
-                        // TODO do a better job of displaying the login error
-                        alert(response);
+                    }, function () {
+                        dialog.showAlert(
+                            'Login Failure',
+                            'Please check your user name and password and try again.');
                     });
         }
     }
