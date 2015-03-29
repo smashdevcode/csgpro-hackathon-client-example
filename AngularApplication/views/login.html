@@ -13,6 +13,10 @@
         <input type="password" ng-model="vm.password" required />
     </md-input-container>
 
+    <md-checkbox ng-model="vm.persist" aria-label="Remember Me">
+        Remember Me
+    </md-checkbox>
+
     <md-button class="md-raised md-primary"
                ng-click="vm.login()" ng-disabled="form.$invalid">
         Login

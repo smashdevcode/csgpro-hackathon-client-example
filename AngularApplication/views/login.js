@@ -13,6 +13,7 @@
 
         vm.userName = '';
         vm.password = '';
+        vm.persist = false;
         vm.login = login;
 
         activate();
@@ -23,7 +24,7 @@
         function login() {
             console.log('Login: ' + vm.userName + ' ' + vm.password);
 
-            auth.login(vm.userName, vm.password)
+            auth.login(vm.userName, vm.password, vm.persist)
                 .then(function () {
                        $location.path('/home');
                     }, function () {
