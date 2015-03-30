@@ -1,0 +1,71 @@
+
+/* button styles */
+
+.md-button ng-md-icon svg {
+    fill: #000;
+}
+
+.md-button.md-primary ng-md-icon svg,
+.md-button.md-accent ng-md-icon svg,
+.md-toolbar-tools .md-button ng-md-icon svg {
+    fill: #fff;
+}
+
+.md-button[disabled="disabled"] ng-md-icon svg {
+    fill: rgba(0,0,0,0.26);
+}
+
+.md-button label {
+    vertical-align: middle;
+    float: right;
+    margin: 2px 4px;
+}
+
+/* navigation button styles */
+
+.md-button.nav {
+    height: 50px;
+    padding-top: 12px;
+}
+
+.md-button.nav ng-md-icon svg {
+    float: left;
+    fill: #000;
+    margin-left: 10px;
+}
+
+.md-button.nav label {
+    vertical-align: middle;
+    float: left;
+    margin: 2px 4px;
+}
+
+/* misc styles */
+
+.margin {
+    margin: 10px;
+}
+
+.margin-extra {
+    margin: 20px;
+}
+
+.margin-left {
+    margin: 10px;
+}
+
+.pad {
+    padding: 10px;
+}
+
+.pad-top {
+    padding-top: 10px;
+}
+
+.pad-top-extra {
+    padding-top: 20px;
+}
+
+.md-tab-content {
+    padding: 10px;
+}

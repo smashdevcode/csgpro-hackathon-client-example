@@ -11,6 +11,7 @@
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-material-icons/angular-material-icons.js"></script>
 
     <script src="js/app.js"></script>
     <script src="js/app-run.js"></script>
@@ -26,8 +27,7 @@
     <script src="js/toast.js"></script>
     <script src="views/home.js"></script>
     <script src="views/login.js"></script>
-    <script src="views/project-add.js"></script>
-    <script src="views/project-edit.js"></script>
+    <script src="views/project-add-edit.js"></script>
     <script src="views/projects.js"></script>
     <script src="views/register.js"></script>
 
@@ -47,11 +47,13 @@
         <md-content ng-controller="SideNav as vm">
 
             <div ng-if="vm.isUserAuthenticated()" layout="column">
-                <md-button href="#/home">
-                    Home
+                <md-button class="nav" href="#/home">
+                    <ng-md-icon icon="home"></ng-md-icon>
+                    <label>Home</label>
                 </md-button>
-                <md-button href="#/projects">
-                    Projects
+                <md-button class="nav" href="#/projects">
+                    <ng-md-icon icon="assignment"></ng-md-icon>
+                    <label>Projects</label>
                 </md-button>
             </div>
 
@@ -82,16 +84,19 @@
             <div class="md-toolbar-tools" ng-if="vm.isUserAuthenticated()">
                 <span flex></span>
                 <md-button ng-click="vm.editProfile()">
-                    {{ vm.getUserName() }}
+                    <ng-md-icon icon="account_circle"></ng-md-icon>
+                    <label>{{ vm.getUserName() }}</label>
                 </md-button>
-                <md-button ng-click="vm.logout()">
-                    Logout
+                <md-button class="margin-left" ng-click="vm.logout()">
+                    <ng-md-icon icon="exit_to_app"></ng-md-icon>
+                    <label>Logout</label>
                 </md-button>
             </div>
             <div class="md-toolbar-tools" ng-if="!vm.isUserAuthenticated()">
                 <span flex></span>
                 <md-button ng-click="vm.register()">
-                    Register
+                    <ng-md-icon icon="assignment_ind"></ng-md-icon>
+                    <label>Register</label>
                 </md-button>
             </div>
         </md-toolbar>

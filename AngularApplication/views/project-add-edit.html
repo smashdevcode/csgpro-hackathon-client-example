@@ -1,60 +1,141 @@
 ﻿
-<h2>{{ vm.pageTitle }}</h2>
+<h2>{{ vm.pageTitle }} &ndash; {{ vm.project.Name }}</h2>
 
-<form name="form" role="form">
+<div layout="row">
 
-    <md-button class="md-raised md-primary"
-               ng-click="vm.save()" ng-disabled="form.$invalid">
-        Save
-    </md-button>
+    <div layout="column" flex="66" layout-margin layout-padding>
 
-    <md-button class="md-raised md-accent"
-               ng-click="vm.cancel()">
-        Cancel
-    </md-button>
+        <form name="form" role="form">
 
-    <md-tabs>
-        <md-tab label="Main">
+            <md-button class="md-raised md-primary"
+                       ng-click="vm.save()" ng-disabled="form.$invalid">
+                <ng-md-icon icon="save"></ng-md-icon>
+                <label>Save</label>
+            </md-button>
 
-            <h3>Main</h3>
+            <md-button class="md-raised md-accent margin-left"
+                       ng-click="vm.cancel()">
+                <ng-md-icon icon="cancel"></ng-md-icon>
+                <label>Cancel</label>
+            </md-button>
 
-            <md-input-container>
-                <label>Name</label>
-                <input type="text" ng-model="vm.project.Name" required autofocus />
-            </md-input-container>
+            <md-tabs class="pad-top-extra">
+                <md-tab label="Main">
 
-            <md-input-container>
-                <label>External System Key</label>
-                <input type="text" ng-model="vm.project.ExternalSystemKey" />
-            </md-input-container>
+                    <md-input-container>
+                        <label>Name</label>
+                        <input type="text" ng-model="vm.project.Name" required autofocus />
+                    </md-input-container>
 
-            <md-checkbox ng-model="vm.project.Archived" aria-label="Archived">
-                Archived
-            </md-checkbox>
+                    <md-input-container>
+                        <label>External System Key</label>
+                        <input type="text" ng-model="vm.project.ExternalSystemKey" />
+                    </md-input-container>
 
-            <pre>
-{{ vm.project | json }}
-            </pre>
+                    <md-checkbox ng-model="vm.project.Archived" aria-label="Archived">
+                        Archived
+                    </md-checkbox>
 
-        </md-tab>
-        <md-tab label="Roles">
+                    <!--<pre>-->
+<!--{{ vm.project | json }}-->
+                    <!--</pre>-->
 
-            <h3>Roles</h3>
+                </md-tab>
+                <md-tab label="Roles">
 
-            <ul ng-repeat="role in vm.project.ProjectRoles">
-                <li>{{ role.Name }} <pre>{{ role | json }}</pre></li>
-            </ul>
+                    <md-button class="md-raised margin" ng-click="vm.addRole()">
+                        <ng-md-icon icon="add_circle"></ng-md-icon>
+                        <label>Add Role</label>
+                    </md-button>
 
-        </md-tab>
-        <md-tab label="Tasks">
+                    <md-card ng-repeat="role in vm.project.ProjectRoles">
+                        <md-card-content layout="column" flex>
+                            <div layout="row" flex>
 
-            <h3>Tasks</h3>
+                                <md-input-container flex="50">
+                                    <label>Name</label>
+                                    <input type="text" ng-model="role.Name" required />
+                                </md-input-container>
 
-            <ul ng-repeat="task in vm.project.ProjectTasks">
-                <li>{{ task.Name }} <pre>{{ task | json }}</pre></li>
-            </ul>
+                                <md-input-container flex="50">
+                                    <label>External System Key</label>
+                                    <input type="text" ng-model="role.ExternalSystemKey" />
+                                </md-input-container>
 
-        </md-tab>
-    </md-tabs>
+                            </div>
+                            <div layout="row" layout-align="end end">
 
-</form>
+                                <md-button class="md-raised"
+                                           ng-click="vm.removeRole($index)"
+                                           ng-disabled="vm.project.ProjectRoles.length === 1 || role.TotalTimeInHours > 0">
+                                    <ng-md-icon icon="remove_circle"></ng-md-icon>
+                                    <label>Remove</label>
+                                </md-button>
+
+                            </div>
+                        </md-card-content>
+                    </md-card>
+
+                </md-tab>
+                <md-tab label="Tasks">
+
+                    <md-button class="md-raised margin" ng-click="vm.addTask()">
+                        <ng-md-icon icon="add_circle"></ng-md-icon>
+                        <label>Add Task</label>
+                    </md-button>
+
+                    <md-card ng-repeat="task in vm.project.ProjectTasks">
+                        <md-card-content layout="column" flex>
+                            <div layout="row" flex>
+
+                                <md-input-container flex="50">
+                                    <label>Name</label>
+                                    <input type="text" ng-model="task.Name" required />
+                                </md-input-container>
+
+                                <md-input-container flex="50">
+                                    <label>External System Key</label>
+                                    <input type="text" ng-model="task.ExternalSystemKey" />
+                                </md-input-container>
+
+                            </div>
+                            <div layout="row" layout-align="space-between end">
+
+                                <div layout="row">
+
+                                    <md-checkbox ng-model="task.Billable" aria-label="Billable">
+                                        Billable
+                                    </md-checkbox>
+
+                                    <md-checkbox ng-model="task.RequireComment" aria-label="Require Comment">
+                                        Require Comment
+                                    </md-checkbox>
+
+                                </div>
+
+                                <md-button class="md-raised"
+                                           ng-click="vm.removeTask($index)"
+                                           ng-disabled="vm.project.ProjectTasks.length === 1 || task.TotalTimeInHours > 0">
+                                    <ng-md-icon icon="remove_circle"></ng-md-icon>
+                                    <label>Remove</label>
+                                </md-button>
+
+                            </div>
+                        </md-card-content>
+                    </md-card>
+
+                </md-tab>
+            </md-tabs>
+
+        </form>
+
+    </div>
+
+    <div layout="column" flex="33">
+
+        <p>Total Time: {{ vm.project.TotalTimeInHoursDisplay || '0' }}<br />
+            Total Billable Time: {{ vm.project.TotalBillableTimeInHoursDisplay || '0' }}</p>
+
+    </div>
+
+</div>

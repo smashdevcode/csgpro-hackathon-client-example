@@ -14,7 +14,13 @@
             getProjects: getProjects,
             getProject: getProject,
             addProject: addProject,
-            updateProject: updateProject
+            updateProject: updateProject,
+            addProjectRole: addProjectRole,
+            updateProjectRole: updateProjectRole,
+            removeProjectRole: removeProjectRole,
+            addProjectTask: addProjectTask,
+            updateProjectTask: updateProjectTask,
+            removeProjectTask: removeProjectTask
         };
 
         function getUser() {
@@ -35,6 +41,30 @@
 
         function updateProject(project) {
             return http('PUT', 'projects/' + project.ProjectId, project);
+        }
+
+        function addProjectRole(projectRole) {
+            return http('POST', 'projectroles', projectRole);
+        }
+
+        function updateProjectRole(projectRole) {
+            return http('PUT', 'projectroles/' + projectRole.ProjectRoleId, projectRole);
+        }
+
+        function removeProjectRole(projectRoleId) {
+            return http('DELETE', 'projectroles/' + projectRoleId);
+        }
+
+        function addProjectTask(projectTask) {
+            return http('POST', 'projecttasks', projectTask);
+        }
+
+        function updateProjectTask(projectTask) {
+            return http('PUT', 'projecttasks/' + projectTask.ProjectTaskId, projectTask);
+        }
+
+        function removeProjectTask(projectTaskId) {
+            return http('DELETE', 'projecttasks/' + projectTaskId);
         }
 
         function http(method, action, data) {

@@ -43,12 +43,12 @@
                 //}
             })
             .when('/projects/add', {
-                controller: 'ProjectAdd',
+                controller: 'ProjectAddEdit',
                 controllerAs: 'vm',
                 templateUrl: 'views/project-add-edit.html'
             })
             .when('/projects/:projectId', {
-                controller: 'ProjectEdit',
+                controller: 'ProjectAddEdit',
                 controllerAs: 'vm',
                 templateUrl: 'views/project-add-edit.html'
             })

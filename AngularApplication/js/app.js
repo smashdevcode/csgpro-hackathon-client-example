@@ -3,5 +3,5 @@
     'use strict';
 
     angular
-        .module('app', ['ngRoute', 'ngMaterial']);
+        .module('app', ['ngRoute', 'ngMaterial', 'ngMdIcons']);
 })();
