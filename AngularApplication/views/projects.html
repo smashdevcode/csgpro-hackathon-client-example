@@ -1,11 +1,17 @@
 
 <h2>Projects</h2>
 
-<md-button class="md-raised md-primary" ng-click="vm.add()">
-    Add Project
-</md-button>
+<div layout="row" layout-margin layout-padding>
+
+    <md-button class="md-raised md-primary" ng-click="vm.add()">
+        <ng-md-icon icon="add_circle"></ng-md-icon>
+        <label>Add Project</label>
+    </md-button>
+
+</div>
 
 <div layout="row" layout-align="start start" layout-wrap>
+
     <md-card ng-repeat="project in vm.projects" flex="30" style="height: 200px">
         <md-card-content layout="column" flex>
             <div layout="row" flex>
@@ -13,9 +19,11 @@
             </div>
             <div layout="row" layout-align="end end">
                 <md-button class="md-raised" ng-click="vm.edit(project.ProjectId)">
-                    Edit
+                    <ng-md-icon icon="mode_edit"></ng-md-icon>
+                    <label>Edit</label>
                 </md-button>
             </div>
         </md-card-content>
     </md-card>
+
 </div>
