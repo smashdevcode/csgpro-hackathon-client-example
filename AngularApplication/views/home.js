@@ -6,23 +6,20 @@
         .module('app')
         .controller('Home', Home);
 
-    Home.$inject = ['api', 'auth'];
+    Home.$inject = ['$location', 'api', 'auth'];
 
-    function Home(api, auth) {
+    function Home($location, api, auth) {
         var vm = this;
 
-        vm.name = '';
+        vm.add = add;
 
         activate();
 
         function activate() {
+        }
 
-            // TODO just get the user information from the auth service
-
-            api.getUser().then(function (user) {
-                console.log(user);
-                vm.name = user.Name;
-            });
+        function add() {
+            $location.path('/timeentries/add');
         }
     }
 })();

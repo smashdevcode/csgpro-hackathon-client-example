@@ -18,6 +18,16 @@
                 controllerAs: 'vm',
                 templateUrl: 'views/home.html'
             })
+            .when('/timeentries/add', {
+                controller: 'TimeEntriesAddEdit',
+                controllerAs: 'vm',
+                templateUrl: 'views/time-entries-add-edit.html'
+            })
+            .when('/timeentries/:timeEntryId', {
+                controller: 'TimeEntriesAddEdit',
+                controllerAs: 'vm',
+                templateUrl: 'views/time-entries-add-edit.html'
+            })
             .when('/projects', {
                 controller: 'Projects',
                 controllerAs: 'vm',

@@ -1,0 +1,58 @@
+
+<h2>{{ vm.pageTitle }}</h2>
+
+<div layout="row">
+
+    <div layout="column" flex="66" layout-margin layout-padding>
+
+        <form name="form" role="form">
+
+            <md-button class="md-raised md-primary"
+                       ng-click="vm.save()" ng-disabled="form.$invalid">
+                <ng-md-icon icon="save"></ng-md-icon>
+                <label>Save</label>
+            </md-button>
+
+            <md-button class="md-raised md-accent margin-left"
+                       ng-click="vm.cancel()">
+                <ng-md-icon icon="cancel"></ng-md-icon>
+                <label>Cancel</label>
+            </md-button>
+
+            <p>Project</p>
+
+            <p>Role</p>
+
+            <p>Task</p>
+
+            <p>Billable</p>
+
+            <div ng-if="vm.isEdit()">
+
+                <p>Time In</p>
+
+                <p>Time Out</p>
+
+            </div>
+
+            <p>Comment</p>
+
+            <!--{-->
+            <!--"ProjectRoleId": 1,-->
+            <!--"ProjectTaskId": 1,-->
+            <!--"Billable": true,-->
+            <!--"TimeIn": "2015-03-31T00:15:13.3474417+00:00",-->
+            <!--"TimeOut": "2015-03-31T00:15:13.3474417+00:00",-->
+            <!--"Hours": 1.0,-->
+            <!--"Comment": "sample string 2"-->
+            <!--}            -->
+
+        </form>
+
+    </div>
+
+    <div layout="column" flex="33">
+
+    </div>
+
+</div>

@@ -11,6 +11,9 @@
     function api($q, $http, apiUrl, session) {
         return {
             getUser: getUser,
+            getTimeEntry: getTimeEntry,
+            addTimeEntry: addTimeEntry,
+            updateTimeEntry: updateTimeEntry,
             getProjects: getProjects,
             getProject: getProject,
             addProject: addProject,
@@ -25,6 +28,18 @@
 
         function getUser() {
             return http('GET', 'users', null);
+        }
+
+        function getTimeEntry(timeEntryId) {
+            return http('GET', 'timeentries/' + timeEntryId, null);
+        }
+
+        function addTimeEntry(timeEntry) {
+            return http('POST', 'timeentries', timeEntry);
+        }
+
+        function updateTimeEntry(timeEntry) {
+            return http('PUT', 'timeentries/' + timeEntry.TimeEntryId, timeEntry);
         }
 
         function getProjects() {
