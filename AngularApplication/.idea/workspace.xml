@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f366b52-2ef0-42a5-bbc6-48b334ddec62" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/time-entries-add-edit.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/time-entries-add-edit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/api.js" afterPath="$PROJECT_DIR$/js/api.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/config.js" afterPath="$PROJECT_DIR$/js/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/home.html" afterPath="$PROJECT_DIR$/views/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/home.js" afterPath="$PROJECT_DIR$/views/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AngularApplication.iws" />
@@ -479,7 +472,13 @@
       <option name="project" value="LOCAL" />
       <updated>1427759362370</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Stubbed out the &quot;Add/Edit Time Entry&quot; view">
+      <created>1427761948539</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1427761948539</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -504,9 +503,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4927711" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4927711" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28554216" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4686747" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36506024" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -555,7 +554,8 @@
     <MESSAGE value="Updated the project to use Angular Material" />
     <MESSAGE value="Added login persistence" />
     <MESSAGE value="Updated &quot;Add/Edit Project&quot; to properly handle roles and tasks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated &quot;Add/Edit Project&quot; to properly handle roles and tasks" />
+    <MESSAGE value="Stubbed out the &quot;Add/Edit Time Entry&quot; view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stubbed out the &quot;Add/Edit Time Entry&quot; view" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
